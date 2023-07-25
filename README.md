@@ -1,5 +1,5 @@
 # Hadoop
-## Environment Setup
+## Local Standalone Environment Setup
 1. Install Java
 ```
 sudo apt install default-jdk default-jre
@@ -44,11 +44,130 @@ tar -xvzf hadoop-3.3.6.tar.gz
 ```
 mv hadoop-3.3.6 hadoop
 ```
-12.  Obtain Java environment directory
+12. Obtain OpenJDK directory
 ```
 dirname $(dirname $(readlink -f $(which java)))
 ```
-13.  Set variables
+13. Add environment variables to bash configuration `~/.bashrc`
+```
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export HADOOP_HOME=/home/hadoop/hadoop
+```
+14. Reload bash settings
+```
+source ~/.bashrc
+```
+15. Confirm setup by using example MapReduce Java archive file to obtain word counts
+```
+mkdir input
+cp $HADOOP_HOME/*.txt input
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar  wordcount input output
+cat output/*
+```
+
+## Pseudo-distributed Single Node Environment Setup
+1. Set up local environment as above
+2. Add environment variables to bash configuration: `~/.bashrc`
+```
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export HADOOP_HOME=/home/hadoop/hadoop
+export HADOOP_INSTALL=$HADOOP_HOME
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export HADOOP_YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
+```
+3. Reload bash settings
+```
+source ~/.bashrc
+```
+4. Create node metadata directories
+```
+mkdir -p /home/hadoop/hadoop/hdfs/{namenode,datanode}
+```
+5. Change to Hadoop configuration directory
+```
+cd hadoop/etc/hadoop
+```
+6. Add Java environment variables to `hadoop-env.sh` file
+```
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+```
+7. Edit configuration in `core-site.xml`
+```
+<configuration>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://localhost:9000</value>
+  </property>
+</configuration>
+```
+8. Edit configuration in `hdfs-site.xml`
+```
+<configuration>
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>dfs.name.dir</name>
+    <value>file:///home/hadoop/hadoop/hdfs/namenode</value>
+  </property>
+  <property>
+    <name>dfs.data.dir</name>
+    <value>file:///home/hadoop/hadoop/hdfs/datanode</value>
+  </property>
+</configuration>
+```
+9. Edit configuration in `mapred-site.xml`
+```
+<configuration> 
+  <property> 
+    <name>mapreduce.framework.name</name> 
+    <value>yarn</value> 
+  </property> 
+</configuration>
+```
+10. Edit configuration in `yarn-site.xml`
+```
+<configuration>
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+</configuration>
+```
+11. Format HDFS name node and check for success
+```
+cd ~
+hdfs namenode -format
+```
+12. Start Hadoop cluster
+```
+start-dfs.sh
+start-yarn.sh
+jps
+```
+13. Access browser interfaces
+ * [http://localhost:9870](http://localhost:9870)
+ * [http://localhost:9864](http://localhost:9864)
+ * [http://localhost:8088](http://localhost:8088)
+
+14. Create directory and copy files on HDFS
+```
+hdfs dfs -mkdir /test
+hdfs dfs -ls /
+hdfs dfs -put ~/input/* /test
+```
+15. Browse directory on interface: [[http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)]
+16. Stop Hadoop cluster
+```
+stop-dfs.sh
+stop-yarn.sh
+```
 
 ## References
 Kumar, R. (2022, October 28). [How to install and configure Hadoop on Ubuntu 20.04](https://tecadmin.net/install-hadoop-on-ubuntu-20-04/). Tec Admin.
