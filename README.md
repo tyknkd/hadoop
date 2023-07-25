@@ -176,4 +176,4 @@ Morubasi, F. (2022, April 21). [Installing Hadoop on Ubuntu 20.04](https://mediu
 
 Shamar, S. (2023, March 17). [Install Hadoop on Ubuntu](https://learnubuntu.com/install-hadoop/). Learn Ubuntu.
 
-Tutorials Point (2014, December). [Hadoop Tutorial](https://www.tutorialspoint.com/hadoop/index.htm).
+Tutorials Point. (2014, December). [Hadoop Tutorial](https://www.tutorialspoint.com/hadoop/index.htm).Tutorials Point.
