@@ -155,6 +155,7 @@ jps
  * [http://localhost:9870](http://localhost:9870)
  * [http://localhost:9864](http://localhost:9864)
  * [http://localhost:8088](http://localhost:8088)
+![HadoopUIscreenshot](https://github.com/tyknkd/hadoop/assets/78797823/cf1bcafc-86b2-4123-b620-7d4e46bd8399)
 
 14. Create directory and copy files on HDFS
 ```
