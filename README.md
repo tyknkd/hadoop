@@ -1,5 +1,13 @@
-# Hadoop
-## Local Standalone Environment Setup
+# Hadoop Notes
+## Contents
+* [Environment Setup](Environment Setup)
+  * [Local Standalone Setup](Local Standalone Environment Setup)
+  * [Pseudo-distributed Single Node Setup](Pseudo-distributed Single Node Environment Setup)
+* [Operations](Operations)
+* [References](References)
+
+## Environment Setup
+### Local Standalone Environment Setup
 1. Install Java
 ```
 sudo apt install default-jdk default-jre
@@ -65,7 +73,7 @@ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.j
 cat output/*
 ```
 
-## Pseudo-distributed Single Node Environment Setup
+### Pseudo-distributed Single Node Environment Setup
 1. Set up local environment as above
 2. Add environment variables to bash configuration: `~/.bashrc`
 ```
@@ -168,6 +176,19 @@ hdfs dfs -put ~/input/* /test
 ```
 stop-dfs.sh
 stop-yarn.sh
+```
+## Operations
+1. Switch to Hadoop user account
+```
+sudo su - hadoop
+```
+2. Format HDFS
+```
+hadoop namenode -format
+```
+3. Start name and data nodes as a cluster
+```
+start-dfs.sh
 ```
 
 ## References
