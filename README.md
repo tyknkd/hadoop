@@ -4,6 +4,7 @@
   * [Local Standalone Setup](#local-standalone-environment-setup)
   * [Pseudo-distributed Single Node Setup](#pseudo-distributed-single-node-environment-setup)
 * [Operations](#operations)
+* [Troubleshooting](#troubleshooting)
 * [References](#references)
 
 ## Environment Setup
@@ -200,6 +201,16 @@ stop-dfs.sh
 12. Stop resource manager
 ```
 stop-yarn.sh
+```
+
+## Troubleshooting
+* Missing data node
+```
+stop-dfs.sh
+rm -R ~/hadoop/hdfs/datanode/*
+hdfs namenode -format
+start-dfs.sh
+jps
 ```
 
 ## References
