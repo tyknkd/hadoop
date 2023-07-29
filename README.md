@@ -1,10 +1,10 @@
 # Hadoop Notes
 ## Contents
-* [Environment Setup](#Environment)
-  * [Local Standalone Setup](#Local)
-  * [Pseudo-distributed Single Node Setup](#Pseudo-distributed)
-* [Operations](#Operations)
-* [References](#References)
+* [Environment Setup](#environment-setup)
+  * [Local Standalone Setup](#local-standalone-environment-setup)
+  * [Pseudo-distributed Single Node Setup](#pseudo-distributed-single-node-environment-setup)
+* [Operations](#operations)
+* [References](#references)
 
 ## Environment Setup
 ### Local Standalone Environment Setup
