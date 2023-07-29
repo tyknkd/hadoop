@@ -148,47 +148,42 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
   </property>
 </configuration>
 ```
-11. Format HDFS name node and check for success
-```
-cd ~
-hdfs namenode -format
-```
-12. Start Hadoop cluster
-```
-start-dfs.sh
-start-yarn.sh
-jps
-```
-13. Access browser interfaces
- * [http://localhost:9870](http://localhost:9870)
- * [http://localhost:9864](http://localhost:9864)
- * [http://localhost:8088](http://localhost:8088)
-![HadoopUIscreenshot](https://github.com/tyknkd/hadoop/assets/78797823/cf1bcafc-86b2-4123-b620-7d4e46bd8399)
-
-14. Create directory and copy files on HDFS
-```
-hdfs dfs -mkdir /test
-hdfs dfs -ls /
-hdfs dfs -put ~/input/* /test
-```
-15. Browse directory on interface: [[http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)]
-16. Stop Hadoop cluster
-```
-stop-dfs.sh
-stop-yarn.sh
-```
 ## Operations
 1. Switch to Hadoop user account
 ```
 sudo su - hadoop
 ```
-2. Format HDFS
+2. Format HDFS name node
 ```
-hadoop namenode -format
+cd ~
+hdfs namenode -format
 ```
-3. Start name and data nodes as a cluster
+3. Start Hadoop cluster and YARN
 ```
 start-dfs.sh
+start-yarn.sh
+```
+4. Check Java virtual machine process status
+```
+jps
+```
+5. Access browser interfaces
+ * [http://localhost:9870](http://localhost:9870)
+ * [http://localhost:9864](http://localhost:9864)
+ * [http://localhost:8088](http://localhost:8088)
+![HadoopUIscreenshot](https://github.com/tyknkd/hadoop/assets/78797823/cf1bcafc-86b2-4123-b620-7d4e46bd8399)
+
+6. Create directory and copy files on HDFS
+```
+hdfs dfs -mkdir /test
+hdfs dfs -ls /
+hdfs dfs -put ~/input/* /test
+```
+7. Browse directory on interface: [[http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)]
+8. Stop Hadoop cluster
+```
+stop-dfs.sh
+stop-yarn.sh
 ```
 
 ## References
