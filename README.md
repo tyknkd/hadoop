@@ -177,28 +177,19 @@ jps
  * All applications: [http://localhost:8088](http://localhost:8088)
 ![HadoopUIscreenshot](https://github.com/tyknkd/hadoop/assets/78797823/cf1bcafc-86b2-4123-b620-7d4e46bd8399)
 
-7. Create directory and copy files to HDFS
+7. Create directory, copy, and view files on HDFS
 ```
 hdfs dfs -mkdir /input
 hdfs dfs -ls /
 hdfs dfs -put ~/input/* /input
+hdfs dfs -cat input/*
 ```
-8. Use MapReduce Java archive file to obtain word counts
-```
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar  wordcount input output
-hdfs dfs -cat output/*
-```
-9. Copy files from HDFS to local filesystem
-```
-hdfs dfs -get output output
-cat output/*
-```
-10. Browse directory on interface: [http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)
-11. Stop Hadoop cluster
+8. Browse directory on interface: [http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)
+9. Stop Hadoop cluster
 ```
 stop-dfs.sh
 ```
-12. Stop resource manager
+10. Stop resource manager
 ```
 stop-yarn.sh
 ```
