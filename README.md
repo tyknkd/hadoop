@@ -193,7 +193,7 @@ hdfs dfs -cat output/*
 hdfs dfs -get output output
 cat output/*
 ```
-10. Browse directory on interface: [[http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)]
+10. Browse directory on interface: [http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)
 11. Stop Hadoop cluster
 ```
 stop-dfs.sh
