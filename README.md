@@ -158,9 +158,12 @@ sudo su - hadoop
 cd ~
 hdfs namenode -format
 ```
-3. Start Hadoop cluster and YARN
+3. Start distributed file cluster
 ```
 start-dfs.sh
+```
+4. Start resource manager
+```
 start-yarn.sh
 ```
 4. Check Java virtual machine process status
@@ -168,9 +171,9 @@ start-yarn.sh
 jps
 ```
 5. Access browser interfaces
- * [http://localhost:9870](http://localhost:9870)
- * [http://localhost:9864](http://localhost:9864)
- * [http://localhost:8088](http://localhost:8088)
+ * Name node information: [http://localhost:9870](http://localhost:9870)
+ * Data node information: [http://localhost:9864](http://localhost:9864)
+ * All applications: [http://localhost:8088](http://localhost:8088)
 ![HadoopUIscreenshot](https://github.com/tyknkd/hadoop/assets/78797823/cf1bcafc-86b2-4123-b620-7d4e46bd8399)
 
 6. Create directory and copy files on HDFS
@@ -183,6 +186,9 @@ hdfs dfs -put ~/input/* /test
 8. Stop Hadoop cluster
 ```
 stop-dfs.sh
+```
+9. Stop resource manager
+```
 stop-yarn.sh
 ```
 
