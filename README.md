@@ -166,33 +166,45 @@ start-dfs.sh
 ```
 start-yarn.sh
 ```
-4. Check Java virtual machine process status
+5. Check Java virtual machine process status
 ```
 jps
 ```
-5. Access browser interfaces
+6. Access browser interfaces
  * Name node information: [http://localhost:9870](http://localhost:9870)
  * Data node information: [http://localhost:9864](http://localhost:9864)
  * All applications: [http://localhost:8088](http://localhost:8088)
 ![HadoopUIscreenshot](https://github.com/tyknkd/hadoop/assets/78797823/cf1bcafc-86b2-4123-b620-7d4e46bd8399)
 
-6. Create directory and copy files on HDFS
+7. Create directory and copy files to HDFS
 ```
-hdfs dfs -mkdir /test
+hdfs dfs -mkdir /input
 hdfs dfs -ls /
-hdfs dfs -put ~/input/* /test
+hdfs dfs -put ~/input/* /input
 ```
-7. Browse directory on interface: [[http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)]
-8. Stop Hadoop cluster
+8. Use MapReduce Java archive file to obtain word counts
+```
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar  wordcount input output
+hdfs dfs -cat output/*
+```
+9. Copy files from HDFS to local filesystem
+```
+hdfs dfs -get output output
+cat output/*
+```
+10. Browse directory on interface: [[http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)]
+11. Stop Hadoop cluster
 ```
 stop-dfs.sh
 ```
-9. Stop resource manager
+12. Stop resource manager
 ```
 stop-yarn.sh
 ```
 
 ## References
+Apache Hadoop Project. (2023, June 18). [Hadoop: Setting up a single node cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html). Apache Software Foundation.
+
 Kumar, R. (2022, October 28). [How to install and configure Hadoop on Ubuntu 20.04](https://tecadmin.net/install-hadoop-on-ubuntu-20-04/). Tec Admin.
 
 Morumbasi, F. (2022, April 21). [Installing Hadoop on Ubuntu 20.04](https://medium.com/@festusmorumbasi/installing-hadoop-on-ubuntu-20-04-4610b6e0391e). Medium.
