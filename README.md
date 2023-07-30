@@ -154,9 +154,11 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ```
 sudo su - hadoop
 ```
-2. Format HDFS name node
+2. Remove previous nodes and format HDFS name node
 ```
 cd ~
+rm -R ~/hadoop/hdfs/namenode/*
+rm -R ~/hadoop/hdfs/datanode/*
 hdfs namenode -format
 ```
 3. Start distributed file cluster
@@ -198,6 +200,7 @@ stop-yarn.sh
 * Missing data node
 ```
 stop-dfs.sh
+rm -R ~/hadoop/hdfs/namenode/*
 rm -R ~/hadoop/hdfs/datanode/*
 hdfs namenode -format
 start-dfs.sh
@@ -213,4 +216,4 @@ Morumbasi, F. (2022, April 21). [Installing Hadoop on Ubuntu 20.04](https://medi
 
 Shamar, S. (2023, March 17). [Install Hadoop on Ubuntu](https://learnubuntu.com/install-hadoop/). Learn Ubuntu.
 
-Tutorials Point. (2014, December). [Hadoop Tutorial](https://www.tutorialspoint.com/hadoop/index.htm).Tutorials Point.
+Tutorials Point. (2014, December). [Hadoop Tutorial](https://www.tutorialspoint.com/hadoop/index.htm). Tutorials Point.
