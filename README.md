@@ -137,7 +137,11 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
   <property> 
     <name>mapreduce.framework.name</name> 
     <value>yarn</value> 
-  </property> 
+  </property>
+  <property>
+    <name>mapreduce.application.classpath</name>
+    <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+  </property>
 </configuration>
 ```
 10. Edit configuration in `yarn-site.xml`
@@ -146,6 +150,10 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
   <property>
     <name>yarn.nodemanager.aux-services</name>
     <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.env-whitelist</name>
+    <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME</value>
   </property>
 </configuration>
 ```
