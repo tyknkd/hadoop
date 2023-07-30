@@ -3,7 +3,8 @@
 * [Environment Setup](#environment-setup)
   * [Local Standalone Setup](#local-standalone-environment-setup)
   * [Pseudo-distributed Single Node Setup](#pseudo-distributed-single-node-environment-setup)
-* [Operations](#operations)
+* [HDFS](#hdfs)
+* [MapReduce](#mapreduce)
 * [Troubleshooting](#troubleshooting)
 * [References](#references)
 
@@ -157,7 +158,7 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
   </property>
 </configuration>
 ```
-## Operations
+## HDFS
 1. Switch to Hadoop user account
 ```
 sudo su - hadoop
@@ -192,7 +193,7 @@ jps
 hdfs dfs -mkdir /input
 hdfs dfs -ls /
 hdfs dfs -put ~/input/* /input
-hdfs dfs -cat input/*
+hdfs dfs -cat /input/*
 ```
 8. Browse directory on interface: [http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)
 9. Stop Hadoop cluster
@@ -203,9 +204,20 @@ stop-dfs.sh
 ```
 stop-yarn.sh
 ```
+## MapReduce
+1. Put files on HDFS for processing
+```
+hdfs dfs -mkdir /input
+hdfs dfs -put ~/hadoop/etc/hadoop/*.xml /input
+```
+2. Use example MapReduce Java archive file to find strings starting with 'dfs'
+```
+hadoop jar ~/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar grep /input /output 'dfs[a-z.]+'
+hdfs dfs -cat output/*
+```
 
 ## Troubleshooting
-* Missing data node
+* Missing name or data node
 ```
 stop-dfs.sh
 rm -R ~/hadoop/hdfs/namenode/*
