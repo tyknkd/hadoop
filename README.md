@@ -219,15 +219,23 @@ hdfs dfs -put ~/hadoop/etc/hadoop/*.xml /input
 hadoop jar ~/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar grep /input /output 'dfs[a-z.]+'
 hdfs dfs -cat /output/*
 ```
-3. Compile [WordCount.java](https://github.com/tyknkd/hadoop/blob/main/WordCounts.java) and create Java archive
+3. Compile [WordCount2.java](https://github.com/tyknkd/hadoop/blob/main/WordCount2.java) and create Java archive
 ```
-hadoop com.sun.tools.javac.Main WordCount.java
-jar cf wc.jar WordCount*.class
+hadoop com.sun.tools.javac.Main WordCount2.java
+jar cf wc2.jar WordCount2*.class
 ```
-4. Run word count MapReduce job on example files
+4. Run word count MapReduce job on [example files](https://github.com/tyknkd/hadoop/tree/main/input/example)
 ```
-hadoop jar wc.jar WordCount /input /wc-output
-hadoop fs -cat /wc-output/*
+hadoop fs -mkdir /input/example
+hadoop fs -put ~/input/example/* /input/example
+hadoop jar wc2.jar WordCount /input/example /wordcount/output
+hadoop fs -cat /wordcount/output/*
+```
+5. Re-run word count job with case sensitivity and [pattern file](https://github.com/tyknkd/hadoop/blob/main/wordcount/patterns.txt)
+```
+hadoop fs -put ~/wordcount/patterns.txt /wordcount
+hadoop jar wc2.jar WordCount2 -Dwordcount.case.sensitive=true /input/example /wordcount/output2 -skip /wordcount/patterns.txt
+hadoop fs -cat /wordcount/output2/*
 ```
 
 ## Troubleshooting
