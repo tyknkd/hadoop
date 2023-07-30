@@ -237,6 +237,8 @@ hadoop fs -put ~/wordcount/patterns.txt /wordcount
 hadoop jar wc2.jar WordCount2 -Dwordcount.case.sensitive=true /input/example /wordcount/output2 -skip /wordcount/patterns.txt
 hadoop fs -cat /wordcount/output2/*
 ```
+![MapReduceAppsScreenshot](https://github.com/tyknkd/hadoop/assets/78797823/6c73c05c-febc-4665-a14a-96f2b927ed57)
+
 
 ## Troubleshooting
 * Missing name or data node
