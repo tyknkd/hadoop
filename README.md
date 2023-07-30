@@ -196,11 +196,15 @@ hdfs dfs -put ~/input/* /input
 hdfs dfs -cat /input/*
 ```
 8. Browse directory on interface: [http://localhost:9870/explorer.html](http://localhost:9870/explorer.html)
-9. Stop Hadoop cluster
+9. Remove file/directory and recursively remove child files/subdirectories
+```
+hdfs dfs -rm -r /input
+```
+10. Stop Hadoop cluster
 ```
 stop-dfs.sh
 ```
-10. Stop resource manager
+11. Stop resource manager
 ```
 stop-yarn.sh
 ```
@@ -214,6 +218,16 @@ hdfs dfs -put ~/hadoop/etc/hadoop/*.xml /input
 ```
 hadoop jar ~/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar grep /input /output 'dfs[a-z.]+'
 hdfs dfs -cat /output/*
+```
+3. Compile [WordCount.java](https://github.com/tyknkd/hadoop/blob/main/WordCounts.java) and create Java archive
+```
+hadoop com.sun.tools.javac.Main WordCount.java
+jar cf wc.jar WordCount*.class
+```
+4. Run word count MapReduce job on example files
+```
+hadoop jar wc.jar WordCount /input /wc-output
+hadoop fs -cat /wc-output/*
 ```
 
 ## Troubleshooting
