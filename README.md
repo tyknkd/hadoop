@@ -230,6 +230,8 @@ jps
 ## References
 Apache Hadoop Project. (2023, June 18). [Hadoop: Setting up a single node cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html). Apache Software Foundation.
 
+Apache Hadoop Project. (2023, June 18). [MapReduce tutorial](https://hadoop.apache.org/docs/r3.3.6/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html). Apache Software Foundation.
+
 Kumar, R. (2022, October 28). [How to install and configure Hadoop on Ubuntu 20.04](https://tecadmin.net/install-hadoop-on-ubuntu-20-04/). Tec Admin.
 
 Morumbasi, F. (2022, April 21). [Installing Hadoop on Ubuntu 20.04](https://medium.com/@festusmorumbasi/installing-hadoop-on-ubuntu-20-04-4610b6e0391e). Medium.
