@@ -213,7 +213,7 @@ hdfs dfs -put ~/hadoop/etc/hadoop/*.xml /input
 2. Use example MapReduce Java archive file to find strings starting with 'dfs'
 ```
 hadoop jar ~/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar grep /input /output 'dfs[a-z.]+'
-hdfs dfs -cat output/*
+hdfs dfs -cat /output/*
 ```
 
 ## Troubleshooting
